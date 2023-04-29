@@ -1,0 +1,98 @@
+Liem D.H., Ekelund R. (1979)
+New types of input in DISTR. Application of LETAGROP for
+analysis of liquid-liquid distribution equilibria data.
+Acta Chem. Scand. A33, 481.
+
+Warnqvist B., Högfeldt E. (1975)
+High-speed computers as a supplement to graphical methods. 14.
+Application of LETAGROP to chemical shifts (NMR) and
+conductivity data.
+Chemica Scripta 7, 196.
+
+Warnqvist B. (1971)
+High-speed computers as a supplement to graphical methods. 13.
+Application of LETAGROP to colligative property type data,
+particularly in vapour phase osmometry.
+Chemica Scripta 1, 49.
+
+Liem D.H. (1971)
+High-speed computers as a supplement to graphical methods. 12.
+Application of LETAGROP to data for liquid-liquid
+distribution equilibria.
+Acta Chem. Scand. 25, 1521.
+
+Ekelund R., Sillén L.G.d., Wahlberg O. (1970)
+Fortran editions of Haltafall and Letagrop.
+Acta Chem. Scand. 24, 3073.
+
+Arnek R. (1970)
+High-speed computers as a supplement to graphical methods. 11.
+Application of LETAGROP to calorimetric titrations.
+Arkiv Kemi 32, 81.
+
+Sillén L.G., Warnqvist B. (1969) 
+High-speed computers as a supplement to graphical methods. 10.
+Application of LETAGROP to spectrophotometric data, for testing
+models and adjusting equilibrium constants.
+Arkiv Kemi 31, 377.
+
+Brauner P., Sillén L.G., Whiteker R. (1969)
+High-speed computers as a supplement to graphical methods. 9.
+Adjustment for systematic experimental errors and other
+"group parameters" in LETAGROP: Applications to potentiometric
+titrations.
+Arkiv Kemi 31, 365.
+
+Arnek R., Sillén L.G., Wahlberg O. (1969)
+High-speed computers as a supplement to graphical methods. 8.
+Some devices to speed up computations on chemical equilibria and
+simplify proramming for LETAGROP. Application to complex formation.
+Arkiv Kemi 31, 353.
+
+Sillén L.G., Warnqvist B. (1969)
+High-speed computers as a supplement to graphical methods. 7.
+Model selection and rejection with LETAGROP: Elimination of
+species with negative or "insignificant" equilibrium constants.
+Arkiv Kemi 31, 341.
+
+Sillén L.G., Warnqvist B. (1969)
+High-speed computers as a supplement to graphical methods. 6.
+A strategy for two-level LETAGROP adjustment of common and "group"
+parameters. Some features that avoid divergence.
+Arkiv Kemi 31, 315.
+
+Sillén L.G., Warnqvist B. (1968)
+Equilibrium constants and model testing from spectrophotometric
+data, using LETAGROP.
+Acta Chem. Scand. 22, 3032.
+
+Ingri N., Kakolovicz W., Sillén L.G., Warnqvist B. (1967)
+High-speed computers as a supplement to graphical methods. V.
+HALTAFALL, a general program for calculating the composition
+of equilibrium mixtures.
+Talanta 14, 1261. Errata, Talanta 15(1968) p. Xi-XII.
+
+Ingri N., Sillén L.G. (1964)
+High-speed computers as a supplement to graphical methods. IV.
+An ALGOL version of LETAGROP VRID.
+Arkiv Kemi 23, 97. 
+
+Sillén L.G. (1964)
+High-speed computers as a supplement to graphical methods. III.
+Twist matrix methods for minimizing the error-square sum in
+problems with many unknown constants.
+Acta Chem. Scand. 18, 1085.
+
+Ingri N., Sillén L.G. (1962)
+High-speed computers as a supplement to graphical methods. II.
+Some computer programs for studies of complex formation equilibria.
+Acta Chem. Scand. 16, 173.
+
+Sillén L.G. (1962)
+High-speed computers as a supplement to graphical methods. I.
+The functional behavior of the error square sum.
+Acta Chem. Scand. 16, 159. 
+
+Dyrssen D., Ingri N., Sillén L.G. (1961)
+"Pit-mapping" - a general approach for computer refining of equilibrium constants.
+Acta Chem. Scand. 15, 694–696.

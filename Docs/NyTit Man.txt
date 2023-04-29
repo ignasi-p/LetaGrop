@@ -1,0 +1,196 @@
+N Y T I T   (ETITR = emf titration  data) LETAGROP
+
+  PC version of LETAGROP-ETITR or LETAGROP-NYTIT (Havel)
+              (September 92)
+   From  potentiometric data (added volume, E) with electrode
+sensitive to A (for instance H+) or B (e.g. a metal ion or e-), or
+with both sorts of electrodes, "best" values are calculated for the
+formation constants of complexes of A, B, C, and L. Eo values, factors
+for liquid junction emfs, corrections to analytical values, and the
+concentration of a weak acid HX (often as impurity) may also be adjusted.
+
+Background.
+ Two, three or four components, A, B, (C, L) form a series
+of complexes, with formation constants ki. The notation, equilibrium
+and mass balance equations are given under "BDTV".
+
+Titration.
+ The experiment starts with Vo ml of a solution with the
+total concentrations Ao,Bo,Co,Lo. At some experimental point we have
+added VT ml of a solution with the total concentrations AT,BT,CT, and
+LT. The total volume of the solution is then
+ Vtot= Vo +fV x VT
+ The total concentrations are
+       A (= Atot)    = (Ao x Vo + AT x VT)/ Vtot
+       B (= Btot)    = (B0 x Vo + BT x VT)/ Vtot,       etc.
+       C
+       L
+       etc.
+       
+ The factor fV ("vfak" in the program ) is set =1 in an ordinary
+buret titration. In a coulometric titration one sets fV=0, VT = the
+number of micro-faradys added, and, say, AT = +0.001 if protons are
+added, -0.001 if they are removed during the electrolysis.
+(Correspondingly if e.g. Ag+, Cd 2+ or e- are added or removed).
+With equal additions VT from two burets one may set fV=2 and for AT,
+BT, and CT use the sums of the concentrations in the two burets.
+
+If the buret solution is changed at some time during the titration,
+the new AT, BT (CT, LT) and fV are given as a "false experimental
+points" with a negative VT (see "input" below).
+A, B, C and the dilution factor
+         fdil ("dil") = Vo/Vtot                                 (3)
+are calculated in PUTS by a procedure Titer, and the results are
+picked up in UBBE by a procedure Titut.
+
+ Certain  analytival corrections can then be introduced, to minimize
+the error square sum; they are listed as ks below. For A one may
+assume either a correction ks3 = dAo to Ao, or a correction ks4 = dAT
+to AT or a correction ks5 = dA to both Ao and AT ( but preferably
+not more than one of these). One may also adjust the analytical
+value for B by multiplication  with a factor 1+ks8 = fB  (Bfak in
+the program). The first guess is of course dAo = dAT = dA = 0, fB=1.
+Moreover one may assume the presence of a weak acid HX, with the
+acidity constant KHX, either in the original solution only (Ks6 =cHX)
+or in all solutions (Ks7 = cHXall).
+(One may easily change the program to allow also for a dibasic dirt
+acid H2X, setting dirt = 2, see procedure DIRTY.)
+
+EMF values.
+ For each poit we measure one or two emf values, one
+dependent on a (ususally = h)
+        E = Eo  + fE   x ln a  + Ej                    (4)
+the other dependent on b
+	EB= EoB + fEB  x ln b  + Ej                    (5)
+	Here,
+	           -1
+	    fE = RTF  ,  fEB  = fE/ne                  (6)
+	    (Efak, EBfak in the program)
+are calculated from the temperature, ag1 = t (o C), and the number ag2
+= ne, and we have                    -1   
+        Ej = jac x h + jalk x Kw x h                   (7)
+	
+	    
+The program may use procedures Hure and Bure to calculate ln a (ln h) and
+ln b from E and EB.
+ The program can also be used for redox titrations in which case the
+electron  e-  is counted as one component, usually B since A must be
+reserved for H+. It may often be convenient to use a positive or negative
+number of electrones, as the formal component B: "e- +", e-e- 2+" or ee 2-".
+One must remember two things: 1) the total concentration of B must never
+become negative, 2) the equations are solved somewhat more rapidly if all
+species contain either one B or none. E.g., one may have
+ (Fe 2+ = C, "e-+" = B, Fe 3+ = BC) or (Fe 3+ = C, e- = B, Fe 2+ = BC); 
+ (H+ = A, UO2 2+ = C, ee 2- = B, U 4+ = A4BC ) or (H+ = A, U 4+ = C, e-e-
+ 2+ = B, UO2 2+ = A-4 BC) or even  (H+ = A, e- = B, UO2 2+ = C, U 4+ A4B2C)
+In the equation for EB (5, 6) ne is simply the charge of the B chosen: -1
+for e-, +2 for e2 2+, etc. 
+ The activity scale for B must be defined so that the formal activity b
+never causes any trouble in the mass balance equations.  E.g., one may
+keep the formation constant of Fe 3+ ( Fe 2+ + e-+ = Fe 3+) constant at
+10 exp(10), to keep the formal [e-+] low. The value for Eo (e-+) will
+                                                                     o
+then come out as eo (Fe 2+, Fe 2+/Pt) + 10 x 59.156 - e ref, taking e  and
+e ref on the hydrogen scale.
+
+Calculations, use of Typ and val.
+
+  The equilibrium calculations are made be means of BDTV. 
+     Typ = 1 if only EA is known,
+     Typ = 2 if only EB is known,
+ and Typ = 3 if both EA and EB are known.
+  PUTS finds out the number of components, Nkom, by using Nas = 2 + 2
+x Nkom.
+The following table gives a survey of the present uses of Typ and Val.
+
+Typ    Val   known       BA    fel           not used
+             besides C L
+	     
+1      1-3   aB          2     delta A
+       4     H=A B       3     delta ln a
+2      1     A b         1     delta B 
+       2     A B         3     delta ln b 
+3      1     a b         0     delta A         (B)
+       2                       delta B         (A)
+       3     H=A b       1     delta ln a      (B)
+       4                       delta B         (A)
+       5     a B         2     delta ln b      (A)
+       6     A B         3     delta ln b      (a)
+      
+      The third column names the quantities that are assumed to be
+known exactly in the calculation and the fifth gives the error fel
+[val] to be used in the calculation of the error square sum U. For
+Typ =1, fel[2] and fel[3] are equal to fel[1] divided by B or C. When
+the "fel" is given as delta ln a or delta ln b, the proportional
+quantities  delta E or delta EB  are really used.
+With two emfs, for each val some part of the experimental information
+is not being used as indicated by the last column.
+
+Use of arrays for various Typ values
+ag  = temp, Ne (if EB is given)
+as  = Ao Bo AT BT Vo fV,              if Nkom =2
+      Ao Bo Co AT BT CT Vo fV,        if Nkom =3
+      Ao Bo Co Lo AT BT CT LT Vo fV,  if Nkom =4 
+      
+ap = 1) VT E +A +B (+C +L ) +fdil +ln a +ln b (+ln c + ln l), if Typ = 1
+     2) VT EB +A +B (+C +L) +fdil +lna +ln b (+ln c +ln l),   if Typ = 2
+     3) VT E  EB +A +B (+C +L) +fdil +lna +ln b (+ln c +ln l),if Typ = 3
+k= k1 = jac, k2 = jalk, k3 = KHX, k4 = Kw, kik > 4 = á                  
+ak = pot, p , q,  (r, t,)
+ks = Eo, EBo, dAo, dAT, dA, cHX, c HXall, 1-fB
+As usual, a "+" means that the value is not given in the input but is
+calculated by the program.
+
+Input
+
+The input is easy  to deduce from the general rules, knowing what the as, ap,
+etc are. We give first the general expressions and then a specific
+example with three components, A = H+, measuring ( and trusting) EA and
+                                         2
+EB, and minimizing U = ä (A calc - A exp) , hence Typ = 3, val = 1.
+
+General:
+Data: 9 (Rurik), Typ, 6 (Rurik), Ns, Nag (1 if Typ =1, else 2)
+Nas (2 + 2 x Nkom), Nap (2 for Typ = 1 or 2, 3 for Typ = 3), temp,
+ne (for Typ = 2 or 3), (Np, Ao, Bo, (Co, Lo), AT, BT, (CT, LT), Vo, fV,
+(VT,E (not for Typ= 2), EB (not for Typ = 1 ))  )
+                                              Np Ns
+ A change of buret solution in the course of a titration (inside a grpoup)
+is indicated by inserting, at the right place among the ap, (-1, A'T, B'T,
+(C'T, L'T) f' V). If necessary, one or two zeros are added to make the
+number of data correspond to n =2 or 3 "false experimental points". This
+n is included in the Np first given and is later subtracted in the
+program.
+
+Dagens spaning begins:
+
+7 (Rurik), Nk (4+Nx), Nk(4+Nx), Nak(1+Nkom), jac, (0) Nak times, jalk, (0)
+Nak times, KHX, (0) Nak times, 1.0 (for instance), -14, -1, (0) Nkom-1
+times (=Kw),  (k, pot, p,q,  (r,t)) Nx,
+8 (Nks), 0,1,2, (EoB) Ns times  (all ks =0 except ks2=EoB), 0(skin),*
+7, Nk, -1, 2, 1,2,  removes posk protection for k1 and k2
+8(Rurik), Nok (=Nkom), Stegbyt, strart(ln b) tol (B/B tot), ( start (ln
+c), tol (C/C tot), start (ln l ), tol (L/L tot)), start (lnb a), tol (A),
+18 (Rurik), val
+Specific example:
+
+Data: 9(Rurik),3(Typ),6(Rurik),Ns,2(Nag), 8(Nas),3(Nap),25(temp),2(ne),
+      (Np. Ao, Bo,.Co,AT,BT,CT,Vo,fV, (VT,E,EB)  )
+                                              Np   Ns     
+A change of buret solution is indicated by inserting
+(-1,A'T,B'T,C'T,f'V,0(dum)), which is counted as 2 false experimental  points.
+Dagens spaning begins: e.g. 7(Rurik),4+Nx,4+Nx,4)Nak), -17 (jac),0,0,0,0,
+10(jalk), 0,0,0,0, 2.3 E-6(KHX),0,0,0,0, 5.8,-15, -1,0,0,(Kw),
+ (k,pot, p,q,r)   , 8(Nks), 0,2,1,2
+( Eo,EoB)   , 0 (skin)
+          Ns
+7 (Rurik), Nk (4+Nx),-1(Nbyk),1,1,
+8(Rurik), 3 (Nok), Stegbyt, start(ln b), tol (B/B tot), satrt (ln c ), tol
+(C/C tot),
+start(Ln a), Tol a), 18(Rurik),1 (Val),   etc.
+In the following Rurik =11, 19 (or 3 or 20)), 12, 5,2,13,15,etc.  are used
+according to the general rules.
+
+
+* This an example only. In the other cases, say  ks1 or both ks1 and ks2
+may be given.

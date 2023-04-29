@@ -1,0 +1,251 @@
+                          LETAGROP MANUAL
+              
+   This general manual describes information which should follow
+after each RURIK number. Please, observe that here the Rurik's
+are given not in the order they should be given in the input
+data file but in the order corresponding to their value.  
+
+
+Rurik = 1
+
+   U is calculated for the selected data sets (Rs1 through Rs2 given
+in Rurik 11) using available data and parameters. Rs are the
+individual groups (sets) of data (e.g., the individual separated
+titrations).  U = sum of squares of residuals (Y(exp)-Y(calcd)),
+see also Rurik 18.
+
+
+Rurik = 2
+
+   U is calculated and for each point the quantities of interest
+(input data, errors, etc) are printed (Uttag = OUTPUT)
+U = sum of squares of residuals (Y(exp)-Y(calc)), see also Rurik 18.
+
+
+Rurik = 3, N, (ivar[i], w)
+                          N
+   Preparation for a shot, while varying only common parameters k.
+The N parameters k[ik] with the numbers ik = ivar[i], i = 1 ->N
+are to be varied.
+If w is positive, it gives the initial step,  stek[i] := w,
+if w is negative,  stek[i] := stekfak x abs(dark[ik]), see
+also Rurik 4.
+
+
+Rurik = 4, W (stekfak/tolU)
+
+   If a value for the standard deviation (in twisted space) dark[ik]
+or darks[Rs,ik] of the parameters has been calculated, and W is
+positive, then the step stek[i] in the next variation
+(shot) is the product of dark or darks with stekfak (=W).
+Stekfak is automatically set to 0.5 at the beginning of the
+calculations, but if the pit deviates strongly from a pure 2nd
+degree function, it may be advisable to set a lower value such
+as 0.2 or 0.1. The input is then e.g. "4,0.1". The new stekfak
+then remains until changed.
+  If the quantity (W) is negative, then its absolute value
+is used as tolU (default =1.E-6)
+
+
+Rurik = 5
+
+   A shot is made, with the instructions given
+after Rurik =3, 19, or 20.
+
+
+Rurik = 6 , Ns, Nag, Nas, Nap, (ag)  , (Np, (as) ,((ap)   )  )
+                                   Nag         Nas     Nap Np  Ns
+   The data are given: Nag common quantities ag; for each of the
+Ns groups (sets of data = satser) Nas quantities as are given;
+and for each of the Np[Rs] points of a certain group, the Nap
+quantities ap (Y, X1, X2 ...). (procedure DATA)
+
+
+Rurik = 7, (common), (group), (twist),
+
+   Information on adjustable parameters (procedure LASK).
+Alternatives for the three parts:
+
+(common) = a) Nk,Nk,Nak,(k,(ak)  )         ; new problem
+                              Nak Nk
+           b) Nk, Nbyk,(ik,k,(ak)   )      ; partial change
+                                 Nak Nbyk
+           c) Nk,0;   no change
+
+(group)  = a) Nks, Nks,((ks)   )        ; new problem,
+                            Nks Ns      ;  same if Nks =1 or 0.
+                                        ; If Nks =0, only 0,0 is given
+           b) Nks,1,j,(ks)                   ; [Rs,j] is exchanged
+                          Ns                 ;  in all sets.
+           c) Nks,-1,m,(j)                   ; ks[Rs} are set :=0
+                          m                  ;  for the j values given
+           d) Nks,0,m,(j) , ((ks[Rs,j]) )    ; all ks =0 except m of
+                         m             m Ns  ;  them in each group
+           e) Nks,0,0; no change
+
+(twist) =  a) skin,(ik,jk,sk)         ; values given for some twist
+                             skin     ;   matrix terms
+           b) 0; no change
+
+
+Rurik =7, Nk,-1,Negk,(ik)
+                         Negk             
+   The "posk" protection is removed from Negk of the k parameters,
+which are thus allowed to be negative. Must be given again after
+a change of the adjustable parameters through Rurik =7.
+
+
+Rurik = 8, Nok, stegbyt, (start,tol)
+                                    Nok                   
+   The mass-balance equations for each point in UBBE contain
+Nok unknown quantities to be determined, and start[i] and tol[i]
+are the starting values, and tolerances to be used in solving
+them.  The order of the components B,(C,L,)A if procedure BDTV
+is used. (See also BDTV and the input for special programs).
+"Stegbyt" is the value for the step in Kalle (or Kille) where
+one switches from binary approach to "chord shooting".  Since
+the steps take the values 2exp(-n), any value between 0.50 and
+0.25 (such as 0.45, 0.4 or 0.3) gives the same effect.
+For equations of high degree 'n', a stegbyt value around 1/n
+seems appropriate, but the run time does not seem very sensitive
+to the choice of stegbyt.
+
+
+Rurik=9, Typ 
+
+   The number Typ tells the type of problem and picks out the right
+labels in the switches in procedures PUTS and UBBE.
+Use before Rurik=6.
+
+
+Rurik=10, vmax.
+
+   Gives the number of loops in procedure Kalle after which x and y
+values are printed, as an indication of bad values for tol and
+start after Rurik=8.
+
+
+Rurik =11, Rs1,Rs2 
+  
+   Gives the numbers of the first and last in the series of data
+groups to be treated. See also Rurik 21.
+
+
+Rurik=12, Skrikut 
+  
+   Skrikut is a number which may be used to suppress certain types
+of output. At present the values 1,0,-1,and -2 are used. The output
+stated below is printed for the first Skriut values but suppressed
+for those in parentheses.
+
+ - Variation of k (not Tage)
+     - kv and U during shot, Minskasteg, Stegupp, Komner,
+       s[ik,jk] values:  1 0 (-1  -2) if not Koks,
+                         1 0  -1 (-2) if Koks 
+     - Minusgrop, kbom, darr, sigy, U at PROVA, Gamla konstanter,
+       slumpskott, Umin+kmin in slumpskott, MIKO,
+       partial results: all
+ - Variation of Ks; Tage and Koks
+     - kv and U during shot:  1 (0 -1 -2)
+     - Minska steg, Stegupp, kbom, darr, sigy, s[ik,jk] values,
+       U at PROVA, MIKO, Gamla konstanter,
+       partial results: 1 0 (-1 -2)
+     - Slumpskott, Umin+kmin in Slumpskott:  1 0 -1 (-2)
+     - Minusgrop: all
+
+
+Rurik = 13
+
+   Print available  "best" values for k and ks, with their
+darr (standard deviation as calculated)  (procedure SKRIK)
+
+
+Rurik = 14 /text on the next line/
+
+   Text on following line is printed. Can of course be
+repeated: 14 /text/ 14 /text/...
+
+
+Rurik=15
+
+   The information on the k[ik] and their standard deviations is
+transformed to decadic logarithms (procedure Logkik).  The limits
+given correspond approximately to log (k+-3s(k));  if s(k) > 0.2 x k,
+only the "best" value for log k, and the maximum value,
+log (k+3s(k)) is given.
+
+
+Rurik = 16:  new page in the output. :-)
+
+
+Rurik = 17,
+ 1(Styr), sigfak, Nskytt, Nvar, (ik)    , Nin (k,(ak)    ,dark)
+                                    Nvar             Nak      Nin
+   This starts one cycle of the species selector. Sigfak is the
+rejection factor F(sigma) so that a protected parameter is
+rejected if, after Nskytt "shots", it comes out as k<F(sigma) x
+sigma(k). Out of the initial Nk k values, Nvar are to be varied,
+and their numbers are given. Nin new parameters will be added in
+time and tried: their ak values, and first guesses for suitable
+k and stek values are given. Warning: Nk+Nin must not exceed
+the number of k's allowed in the program.
+
+
+Rurik=17, 5(Styr), sigfak, Nskytt
+
+   Starts another cycle of the species selector, giving previously
+rejected parameters (species) one more chance.
+
+
+Rurik=18, val
+
+  Val tells which deviation fel[val] is to be used in
+calculating U. Val is automatically set =1 after Rurik =9 (new Type).
+
+
+Rurik = 19, N, (ik,w) , Nskott, Nvaks, (ik,w)
+                     N                       Nvaks
+     Preparation for shot with Koks true. N of the common
+parameters are to be varied (information as for Rurik=3) on an
+"upper level". For each set of the common k on the upper level,
+a certain number of ks parameters are to be adjusted in order to
+give for each group the lowest possible U value.  With Rurik=19,
+a certain set of Nvaks group parameters ks are to be varied,
+the same ones in each group. The numbers are given, together
+with w (the stek if positive, else stekfak x abs(darks[Rs,ik])
+is used for stek). For each set of k parameters during a shot
+on the upper level, Nskott shots are to be made varying
+the ks in each group. See also Rurik=20.
+
+
+Rurik = 20, N, (ik,w) , Nskott, Nvaks, (Rs,ik,w)
+                     N                          Nvaks
+   Like for Rurik = 19 except that the ks[Rs,ik] parameters to
+be adjusted are handpicked: so, Nvaks is the total number of ks
+to be adjusted.
+   After the preparation by Rurik =3,19,or 20, the shot is
+ordered by Rurik =5, three shotts by "5,5,5" etc. (Rurik =4
+need not be stated every time).
+    For varying only ks parameters and no common k (earlier
+Rurik =10) one may use Rurik =19 with N=0.
+
+
+Rurik =21, RsN, (Rsi)
+                     RsN
+   RsN sets of data are selected to be treated. The sets of data
+groups (Rsi) may be in any order. See also Rurik 11.
+
+
+Order of input Rurik
+
+   Begin with descriptive text and data: 14, 9,6,
+Uttag(OUTPUT) (2) must be preceded by 7,8 (if equations are
+to be solved), 11 or 21 (if not all groups will be treated). Note
+that if 2 is given, N is set =0 so that 3, or 19, or 20 must
+again be given if a new 5 is wanted.
+   A shot (5) or a cycle of the species selector (17) must be
+preceded by 7,8,11, and 3 (or 19, or 20), and by 18 (if val is not 1).
+   Try to get familiar with the proper use of the other Rurik
+numbers such as 4,10,12,13,15,16.
+   The run is finished by -1, or any other Rurik<1 or >21. This can
+happen by accident if there are misprints in the input data.
