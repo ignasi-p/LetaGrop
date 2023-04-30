@@ -41,7 +41,7 @@ https://en.wikipedia.org/wiki/Determination_of_equilibrium_constants#Implementat
 All files are available from the [releases section][2].
 
 ## See also
-https://sites.google.com/view/groundwatergeochemistry
+Ignasi's page on [water chemistry][3].
 
 ## References
 
@@ -108,3 +108,4 @@ Acta Chemica Scandinavica A 33, 481–482. https://doi.org/10.3891/acta.chem.sca
 
 [1]: http://actachemscand.org/doi/10.3891/acta.chem.scand.24-3073
 [2]: https://github.com/ignasi-p/letaGrop/releases/latest
+[3]: https://sites.google.com/view/groundwatergeochemistry
