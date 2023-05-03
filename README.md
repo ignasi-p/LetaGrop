@@ -4,8 +4,9 @@
 [command-line](https://en.wikipedia.org/wiki/Command-line_interface) programs
 developed to [determine](https://en.wikipedia.org/wiki/Determination_of_equilibrium_constants)
 the [stability constants of complexes](https://en.wikipedia.org/wiki/Stability_constants_of_complexes)
-from experimental data using a least-squares method. Because they were extensively
-tested and well adapted to use experimental laboratory data, they are still being used.
+from experimental laboratory data using a least-squares method. Because these programs
+were extensively tested and well adapted to use experimental laboratory data,
+they are still being used.
 
 LetaGrop was developed by Lars Gunnar Sillén and his co-workers at the Department of
 Inorganic Chemistry, Royal Institute of Technology ([KTH](https://www.kth.se/en)),
@@ -19,9 +20,9 @@ The initial Fortran version by [Ekelund et al. (1970)][1] is here translated
 into **Fortran 90**. A list of publications describing LetaGrop is given at the
 end of this document. The references published in _Arkiv för Kemi_, which are
 practically impossible to get, are included in this site as PDF-files.
-Instructions are also given here on how to download the [`MinGW64`](https://www.mingw-w64.org/)
-compiler, how to create the LetaGrop Windows binaries, how to test
-them and how to run LetaGrop.
+Instructions are also given here on how to download the Fortran compiler
+from [`MinGW64`](https://www.mingw-w64.org/), how to create the LetaGrop
+Windows binaries, how to test them and how to run LetaGrop.
 
 ### The LetaGrop family of programs
 
@@ -39,9 +40,6 @@ https://en.wikipedia.org/wiki/Determination_of_equilibrium_constants#Implementat
 
 ## Download
 All files are available from the [releases section][2].
-
-## See also
-Ignasi's page on [water chemistry][3].
 
 ## References
 
@@ -109,3 +107,7 @@ Acta Chemica Scandinavica A 33, 481–482. https://doi.org/10.3891/acta.chem.sca
 [1]: http://actachemscand.org/doi/10.3891/acta.chem.scand.24-3073
 [2]: https://github.com/ignasi-p/letaGrop/releases/latest
 [3]: https://sites.google.com/view/groundwatergeochemistry
+
+## See also
+Ignasi's page on [water chemistry][3].
+

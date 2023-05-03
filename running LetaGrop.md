@@ -4,7 +4,7 @@ The file `trunk_f90\Fortran_Win10.md` describes how to download and install
 the [`MinGW64`](https://www.mingw-w64.org/) Fortran compiler for
 64 bit Windows.
 
-The file `trunk_f90\complie_and_test.md` describes how to build and test the
+The file `trunk_f90\compile_and_test.md` describes how to build and test the
 different LetaGrop versions.
 
 LetaGrop is a [command-line](https://en.wikipedia.org/wiki/Command-line_interface)
