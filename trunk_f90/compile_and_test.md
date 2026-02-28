@@ -1,6 +1,6 @@
 # LetaGrop - Compile and Test
 
-The file `Fortran_Win10.md` describes how to download and install
+The file `Fortran_Windows.md` describes how to download and install
 the [`MinGW64`](https://www.mingw-w64.org/) Fortran compiler for
 64 bit Windows. It is expected that the installation folder
 for the [GNU compiler collection](https://en.wikipedia.org/wiki/GNU_Compiler_Collection)
